@@ -13,8 +13,6 @@ data_directory = './data/lunar/training/data/S12_GradeA/'
 
 
 
-
-
 def get_all_files(training_dir=""):
     files = os.listdir(training_dir)
     return [join(training_dir, file) for file in files if file.endswith("mseed")]
@@ -69,17 +67,18 @@ for i in range(0, len(cat.index)):
     #print(arrival_time_absolute)
 
 
-        
+    stats = st[i][0].stats
+    sampling_rate = stats["sampling_rate"]
     tr=st[0].traces[0].copy()
     tr_filt = tr.copy()
-    tr_filt.filter('lowpass', freq=1.5, corners=2, zerophase=True)
+    tr_filt.filter('lowpass', freq=0.5, corners=2, zerophase=True)
     #tr_filt.filter('bandpass', freq=1.5, corners=2, zerophase=True)
     #tr_filt.filter('highpass', freq=1.5, corners=2, zerophase=True)
     #tr_filt.filter('bandstop', freq=1.5, corners=2, zerophase=True)
     t = np.arange(0, tr.stats.npts / tr.stats.sampling_rate, tr.stats.delta)
 
-    tr_times = tr.times()
-    tr_data = tr.data
+    tr_times = tr_filt.times()
+    tr_data = tr_filt.data
 
     starttime = tr.stats.starttime.datetime
     arrival = arrival_time_rel
