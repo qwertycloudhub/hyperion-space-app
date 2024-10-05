@@ -9,6 +9,9 @@ from scipy import signal
 from matplotlib import cm
 from datetime import datetime, timedelta
 from os.path import join
+from obspy.signal.invsim import cosine_taper
+from obspy.signal.filter import highpass
+from obspy.signal.trigger import classic_sta_lta, plot_trigger, trigger_onset
 
 data_directory = './data/lunar/training/data/S12_GradeA/'
 cat_directory = './data/lunar/training/catalogs/'
@@ -26,6 +29,12 @@ def get_all_mseed_files(dir=""):
 
 def filter(trace):
     return trace
+
+def filter2(trace):
+    df = trace.stats.sampling_rate
+    sta = 120 
+    lta = 600
+    cft = classic_sta_lta(trace, int(sta * df), int(lta * df))
 
 def main_compiler():
     all_mseed_files = get_all_mseed_files(dir="./data/mars/training/data")
@@ -50,8 +59,9 @@ def main_compiler():
 
         data_list.append(
             {
-                "destination_relative": arrival_time_rel
-                "Filtered_trace": 
+                "destination_relative": arrival_time_rel,
+                "Filtered_trace": filter2(traces[0])
             }
         )
+
 main_compiler()

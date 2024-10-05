@@ -18,13 +18,13 @@ def get_all_files(training_dir=""):
     return [join(training_dir, file) for file in files if file.endswith("mseed")]
 mseed_files = get_all_files(training_dir=data_directory)
 #print(mseed_files)
-st = []
+streams = []
 for file in mseed_files:
-    st.append(ob.read(file))
+    streams.append(ob.read(file))
 
 #Stats
 
-print(st[75][0].stats)
+#print(st[75][0].stats)
 
 
 
@@ -45,7 +45,7 @@ print(st[75][0].stats)
 cat_directory = './data/lunar/training/catalogs/'
 cat_file = cat_directory + 'apollo12_catalog_GradeA_final.csv'
 cat = pd.read_csv(cat_file)
-print(cat.to_string())  
+#print(cat.to_string())  
 
 
 
@@ -67,14 +67,18 @@ for i in range(0, len(cat.index)):
     #print(arrival_time_absolute)
 
 
-    stats = st[i][0].stats
+    stats = streams[i][0].stats
     sampling_rate = stats["sampling_rate"]
-    tr=st[0].traces[0].copy()
+    tr=streams[i].traces[0].copy()
     tr_filt = tr.copy()
-    tr_filt.filter('lowpass', freq=0.5, corners=2, zerophase=True)
-    #tr_filt.filter('bandpass', freq=1.5, corners=2, zerophase=True)
-    #tr_filt.filter('highpass', freq=1.5, corners=2, zerophase=True)
-    #tr_filt.filter('bandstop', freq=1.5, corners=2, zerophase=True)
+
+    print(f"Sampling rate {sampling_rate}")
+    tr_filt.filter('bandpass', freqmin = .9, freqmax = 1, corners=1, zerophase=False)
+    tr_filt.filter('lowpass', freq=0.1, corners=0, zerophase=False)
+    #tr_filt.filter('highpass', freq=0.1, corners=2, zerophase=False)
+    #tr_filt.filter('bandstop', freqmin = 0.1, freqmax = 0.2, corners=2, zerophase=False)
+
+
     t = np.arange(0, tr.stats.npts / tr.stats.sampling_rate, tr.stats.delta)
 
     tr_times = tr_filt.times()
