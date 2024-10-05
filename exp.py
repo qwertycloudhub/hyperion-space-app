@@ -19,3 +19,4 @@ def main():
         data_stream = read(file)
         
         print(data_stream.__dict__)
+main()
