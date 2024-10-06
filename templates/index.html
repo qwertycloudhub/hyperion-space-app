@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <head  style = "background-color: #ff6347">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        async function submitDateTime() {
+            const datetimeInput = document.getElementById("datetime").value;
+            const response = await fetch('/process_datetime', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ datetime: datetimeInput })
+            });
+
+            const result = await response.json();
+            document.getElementById("result").innerText = result.message;
+        }
+    </script>
+</head>
+<body>
+    <h1 type="center">Seismo</h1>
+    <h2>Enter Date and Time</h2>
+    <input type="datetime-local" id="datetime">
+    <h2>Lunar or Martian Data</h2>
+    <label>Choose location of data:</label>
+    <br>
+    <select name="datalocation" id="datalocation">
+        <option id="defaultoption">Select Option</option>
+        <option id="terran">Earth Data</option>
+        <option id='lunar'>Lunar Data</option>
+        <option id='martian'>Martian Data</option>
+    </select>
+    <br>
+    <br>
+    <br>
+    <button onclick="submitDateTime()">Submit</button>
+    <div id="result"></div>
+</body>
+</html>
