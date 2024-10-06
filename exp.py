@@ -10,7 +10,7 @@ from matplotlib import cm
 from datetime import datetime, timedelta
 from os.path import join
 from obspy.signal.trigger import classic_sta_lta, trigger_onset
-
+#hello
 data_directory = './data/lunar/training/data/S12_GradeA/'
 cat_directory = './data/lunar/training/catalogs/'
 cat_file = cat_directory + 'apollo12_catalog_GradeA_final.csv'
