@@ -1,42 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <head  style = "background-color: #ff6347">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+<head style="background-color: #ff6347">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>
-        async function submitDateTime() {
-            const datetimeInput = document.getElementById("datetime").value;
-            const response = await fetch('/process_datetime', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ datetime: datetimeInput })
-            });
 
-            const result = await response.json();
-            document.getElementById("result").innerText = result.message;
-        }
-    </script>
 </head>
+
 <body>
     <h1 type="center">Seismo</h1>
-    <h2>Enter Date and Time</h2>
-    <input type="datetime-local" id="datetime">
-    <h2>Lunar or Martian Data</h2>
-    <label>Choose location of data:</label>
+    <form actions="/" method="post">
+        <h1>
+            Lunar
+        </h1>
+        <div style="display:flex;flex-direction: row; ">
+            <div>
+                <h1>Lunar data</h1>
+                <select id="lunar">
+                    <option value="default" select>Default</option>
+                    <option value="xa.s12.00.mhz.1970-01-19HR00_evid00002.png">xa.s12.00.mhz.1970-01-19HR00_evid00002
+                    </option>
+                    <option value="xa.s12.00.mhz.1970-03-25HR00_evid00003.png">xa.s12.00.mhz.1970-03-25HR00_evid00003
+                    </option>
+                    <option value="xa.s12.00.mhz.1970-03-26HR00_evid00004.png">xa.s12.00.mhz.1970-03-26HR00_evid00004
+                    </option>
+                    <option value="xa.s12.00.mhz.1970-04-25HR00_evid00006.png">xa.s12.00.mhz.1970-04-25HR00_evid00006
+                    </option>
+                    <option value="xa.s12.00.mhz.1970-04-26HR00_evid00007.png">xa.s12.00.mhz.1970-04-26HR00_evid00007
+                    </option>
+                    <option value="xa.s12.00.mhz.1970-06-15HR00_evid00008.png">xa.s12.00.mhz.1970-06-15HR00_evid00008
+                    </option>
+                    <option value="xa.s12.00.mhz.1970-06-26HR00_evid00009.png">xa.s12.00.mhz.1970-06-26HR00_evid00009
+                    </option>
+                    <option value="xa.s12.00.mhz.1970-07-20HR00_evid00010.png">xa.s12.00.mhz.1970-07-20HR00_evid00010
+                    </option>
+                    <option value="xa.s12.00.mhz.1970-07-20HR00_evid00011.png">xa.s12.00.mhz.1970-07-20HR00_evid00011
+                    </option>
+                    <option value="xa.s12.00.mhz.1970-09-26HR00_evid00013.png">xa.s12.00.mhz.1970-09-26HR00_evid00013
+                    </option>
+                    <option value="xa.s12.00.mhz.1970-10-24HR00_evid00014.png">xa.s12.00.mhz.1970-10-24HR00_evid00014
+                    </option>
+                    <option value="xa.s12.00.mhz.1970-11-12HR00_evid00015.png">xa.s12.00.mhz.1970-11-12HR00_evid00015
+                    </option>
+                    <option value="xa.s12.00.mhz.1970-12-11HR00_evid00017.png">xa.s12.00.mhz.1970-12-11HR00_evid00017
+                    </option>
+                    <option value="xa.s12.00.mhz.1970-12-27HR00_evid00019.png">xa.s12.00.mhz.1970-12-27HR00_evid00019
+                    </option>
+                    <option value="xa.s12.00.mhz.1970-12-31HR00_evid00021.png">xa.s12.00.mhz.1970-12-31HR00_evid00021
+                    </option>
+                    <option value="xa.s12.00.mhz.1971-01-15HR00_evid00022.png">xa.s12.00.mhz.1971-01-15HR00_evid00022
+                    </option>
+                    <option value="xa.s12.00.mhz.1971-01-28HR00_evid00023.png">xa.s12.00.mhz.1971-01-28HR00_evid00023
+                    </option>
+                    <option value="xa.s12.00.mhz.1971-01-29HR00_evid00024.png">xa.s12.00.mhz.1971-01-29HR00_evid00024
+                    </option>
+                    <option value="xa.s12.00.mhz.1971-02-09HR00_evid00026.png">xa.s12.00.mhz.1971-02-09HR00_evid00026
+                    </option>
+                    <option value="xa.s12.00.mhz.1971-03-25HR00_evid00028.png">xa.s12.00.mhz.1971-03-25HR00_evid00028
+                    </option>
+                    <option value="xa.s12.00.mhz.1971-04-13HR02_evid00029.png">xa.s12.00.mhz.1971-04-13HR02_evid00029
+                    </option>
+                    <option value="xa.s12.00.mhz.1971-04-17HR00_evid00030.png">xa.s12.00.mhz.1971-04-17HR00_evid00030
+                    </option>
+                    <option value="xa.s12.00.mhz.1971-05-12HR00_evid00031.png">xa.s12.00.mhz.1971-05-12HR00_evid00031
+                    </option>
+                    <option value="xa.s12.00.mhz.1971-05-12HR00_evid00032.png">xa.s12.00.mhz.1971-05-12HR00_evid00032
+                    </option>
+                    <option value="xa.s12.00.mhz.1971-05-13HR00_evid00033.png">xa.s12.00.mhz.1971-05-13HR00_evid00033
+                    </option>
+                    <option value="xa.s12.00.mhz.1971-05-23HR00_evid00034.png">xa.s12.00.mhz.1971-05-23HR00_evid00034
+                    </option>
+                    <option value="xa.s12.00.mhz.1971-06-12HR00_evid00035.png">xa.s12.00.mhz.1971-06-12HR00_evid00035
+                    </option>
+                    <option value="xa.s12.00.mhz.1971-09-25HR00_evid00042.png">xa.s12.00.mhz.1971-09-25HR00_evid00042
+                    </option>
+                    <option value="xa.s12.00.mhz.1971-10-18HR00_evid00043.png">xa.s12.00.mhz.1971-10-18HR00_evid00043
+                    </option>
+                    <option value="xa.s12.00.mhz.1971-10-20HR00_evid00044.png">xa.s12.00.mhz.1971-10-20HR00_evid00044
+                    </option>
+                    <option value="xa.s12.00.mhz.1971-10-31HR00_evid00045.png">xa.s12.00.mhz.1971-10-31HR00_evid00045
+                    </option>
+                    <option value="xa.s12.00.mhz.1971-11-14HR00_evid00046.png">xa.s12.00.mhz.1971-11-14HR00_evid00046
+                    </option>
+                    <option value="xa.s12.00.mhz.1972-01-04HR00_evid00049.png">xa.s12.00.mhz.1972-01-04HR00_evid00049
+                    </option>
+                    <option value="xa.s12.00.mhz.1972-03-12HR00_evid00052.png">xa.s12.00.mhz.1972-03-12HR00_evid00052
+                    </option>
+                    <option value="xa.s12.00.mhz.1972-05-11HR00_evid00055.png">xa.s12.00.mhz.1972-05-11HR00_evid00055
+                    </option>
+                    <option value="xa.s12.00.mhz.1972-06-16HR00_evid00060.png">xa.s12.00.mhz.1972-06-16HR00_evid00060
+                    </option>
+                    <option value="xa.s12.00.mhz.1972-07-17HR00_evid00067.png">xa.s12.00.mhz.1972-07-17HR00_evid00067
+                    </option>
+                    <option value="xa.s12.00.mhz.1972-07-17HR00_evid00068.png">xa.s12.00.mhz.1972-07-17HR00_evid00068
+                    </option>
+                    <option value="xa.s12.00.mhz.1972-07-28HR00_evid00070.png">xa.s12.00.mhz.1972-07-28HR00_evid00070
+                    </option>
+                    <option value="xa.s12.00.mhz.1972-07-31HR00_evid00071.png">xa.s12.00.mhz.1972-07-31HR00_evid00071
+                    </option>
+                    <option value="xa.s12.00.mhz.1972-12-02HR00_evid00083.png">xa.s12.00.mhz.1972-12-02HR00_evid00083
+                    </option>
+                    <option value="xa.s12.00.mhz.1972-12-03HR00_evid00084.png">xa.s12.00.mhz.1972-12-03HR00_evid00084
+                    </option>
+                    <option value="xa.s12.00.mhz.1973-01-18HR00_evid00088.png">xa.s12.00.mhz.1973-01-18HR00_evid00088
+                    </option>
+                    <option value="xa.s12.00.mhz.1973-01-31HR00_evid00091.png">xa.s12.00.mhz.1973-01-31HR00_evid00091
+                    </option>
+                    <option value="xa.s12.00.mhz.1973-03-01HR00_evid00093.png">xa.s12.00.mhz.1973-03-01HR00_evid00093
+                    </option>
+                    <option value="xa.s12.00.mhz.1973-03-13HR00_evid00094.png">xa.s12.00.mhz.1973-03-13HR00_evid00094
+                    </option>
+                    <option value="xa.s12.00.mhz.1973-03-24HR00_evid00097.png">xa.s12.00.mhz.1973-03-24HR00_evid00097
+                    </option>
+                    <option value="xa.s12.00.mhz.1973-05-14HR00_evid00104.png">xa.s12.00.mhz.1973-05-14HR00_evid00104
+                    </option>
+                    <option value="xa.s12.00.mhz.1973-06-05HR00_evid00107.png">xa.s12.00.mhz.1973-06-05HR00_evid00107
+                    </option>
+                    <option value="xa.s12.00.mhz.1973-06-05HR00_evid00108.png">xa.s12.00.mhz.1973-06-05HR00_evid00108
+                    </option>
+                    <option value="xa.s12.00.mhz.1973-06-18HR00_evid00109.png">xa.s12.00.mhz.1973-06-18HR00_evid00109
+                    </option>
+                    <option value="xa.s12.00.mhz.1973-06-27HR00_evid00112.png">xa.s12.00.mhz.1973-06-27HR00_evid00112
+                    </option>
+                    <option value="xa.s12.00.mhz.1973-07-03HR00_evid00113.png">xa.s12.00.mhz.1973-07-03HR00_evid00113
+                    </option>
+                    <option value="xa.s12.00.mhz.1973-07-04HR00_evid00114.png">xa.s12.00.mhz.1973-07-04HR00_evid00114
+                    </option>
+                    <option value="xa.s12.00.mhz.1973-07-20HR00_evid00117.png">xa.s12.00.mhz.1973-07-20HR00_evid00117
+                    </option>
+                    <option value="xa.s12.00.mhz.1973-07-28HR00_evid00120.png">xa.s12.00.mhz.1973-07-28HR00_evid00120
+                    </option>
+                    <option value="xa.s12.00.mhz.1973-07-29HR00_evid00121.png">xa.s12.00.mhz.1973-07-29HR00_evid00121
+                    </option>
+                    <option value="xa.s12.00.mhz.1973-08-21HR00_evid00127.png">xa.s12.00.mhz.1973-08-21HR00_evid00127
+                    </option>
+                    <option value="xa.s12.00.mhz.1974-01-10HR00_evid00136.png">xa.s12.00.mhz.1974-01-10HR00_evid00136
+                    </option>
+                    <option value="xa.s12.00.mhz.1974-02-07HR00_evid00137.png">xa.s12.00.mhz.1974-02-07HR00_evid00137
+                    </option>
+                    <option value="xa.s12.00.mhz.1974-02-12HR00_evid00138.png">xa.s12.00.mhz.1974-02-12HR00_evid00138
+                    </option>
+                    <option value="xa.s12.00.mhz.1974-03-25HR00_evid00140.png">xa.s12.00.mhz.1974-03-25HR00_evid00140
+                    </option>
+                    <option value="xa.s12.00.mhz.1974-04-08HR00_evid00141.png">xa.s12.00.mhz.1974-04-08HR00_evid00141
+                    </option>
+                    <option value="xa.s12.00.mhz.1974-04-19HR00_evid00142.png">xa.s12.00.mhz.1974-04-19HR00_evid00142
+                    </option>
+                    <option value="xa.s12.00.mhz.1974-04-26HR00_evid00144.png">xa.s12.00.mhz.1974-04-26HR00_evid00144
+                    </option>
+                    <option value="xa.s12.00.mhz.1974-04-27HR00_evid00145.png">xa.s12.00.mhz.1974-04-27HR00_evid00145
+                    </option>
+                    <option value="xa.s12.00.mhz.1974-06-25HR00_evid00149.png">xa.s12.00.mhz.1974-06-25HR00_evid00149
+                    </option>
+                    <option value="xa.s12.00.mhz.1974-07-06HR00_evid00150.png">xa.s12.00.mhz.1974-07-06HR00_evid00150
+                    </option>
+                    <option value="xa.s12.00.mhz.1974-07-06HR00_evid00151.png">xa.s12.00.mhz.1974-07-06HR00_evid00151
+                    </option>
+                    <option value="xa.s12.00.mhz.1974-07-11HR00_evid00152.png">xa.s12.00.mhz.1974-07-11HR00_evid00152
+                    </option>
+                    <option value="xa.s12.00.mhz.1974-07-17HR00_evid00153.png">xa.s12.00.mhz.1974-07-17HR00_evid00153
+                    </option>
+                    <option value="xa.s12.00.mhz.1974-10-14HR00_evid00156.png">xa.s12.00.mhz.1974-10-14HR00_evid00156
+                    </option>
+                    <option value="xa.s12.00.mhz.1975-04-12HR00_evid00191.png">xa.s12.00.mhz.1975-04-12HR00_evid00191
+                    </option>
+                    <option value="xa.s12.00.mhz.1975-05-04HR00_evid00192.png">xa.s12.00.mhz.1975-05-04HR00_evid00192
+                    </option>
+                    <option value="xa.s12.00.mhz.1975-06-24HR00_evid00196.png">xa.s12.00.mhz.1975-06-24HR00_evid00196
+                    </option>
+                    <option value="xa.s12.00.mhz.1975-06-26HR00_evid00198.png">xa.s12.00.mhz.1975-06-26HR00_evid00198
+                    </option>
+                </select>
+            </div>
+            <div>
+                <h1>
+                    Mars Data
+                </h1>
+                <select id="mars">
+                    <option value="default" selected>Default</option>
+                    <option value="XB.ELYSE.02.BHV.2022-01-02HR04_evid0006.png">XB.ELYSE.02.BHV.2022-01-02HR04_evid0006
+                    </option>
+                    <option value="XB.ELYSE.02.BHV.2022-02-03HR08_evid0005.png">XB.ELYSE.02.BHV.2022-02-03HR08_evid0005
+                    </option>
+
+                </select>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <button>Submit</button>
+        <div id="result"></div>
+    </form>
     <br>
-    <select name="datalocation" id="datalocation">
-        <option id="defaultoption">Select Option</option>
-        <option id="terran">Earth Data</option>
-        <option id='lunar'>Lunar Data</option>
-        <option id='martian'>Martian Data</option>
-    </select>
     <br>
     <br>
-    <br>
-    <button onclick="submitDateTime()">Submit</button>
-    <div id="result"></div>
+    <img id="img" src="../static/seismogram.png" alt="PROCCESED_IMAGE">
+    <script>
+        console.log("hi")
+        const lunarSelect = document.getElementById("lunar");
+        console.log(lunarSelect)
+        const marsSelect = document.getElementById("mars");
+        const image = document.getElementById("img")
+        lunarSelect.addEventListener("change", e => {
+            console.log(e.target.value)
+            image.src = `/static/imgs/lunar/${e.target.value}`
+        });
+        marsSelect.addEventListener("change", e => {
+            image.src = `/static/imgs/mars/${e.target.value}`
+        });
+    </script>
 </body>
+
 </html>
