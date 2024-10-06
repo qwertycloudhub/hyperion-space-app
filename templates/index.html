@@ -4,26 +4,14 @@
     <head  style = "background-color: #ff6347">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>
-        async function submitDateTime() {
-            const datetimeInput = document.getElementById("datetime").value;
-            const response = await fetch('/process_datetime', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ datetime: datetimeInput })
-            });
-
-            const result = await response.json();
-            document.getElementById("result").innerText = result.message;
-        }
-    </script>
+    
 </head>
 <body>
     <h1 type="center">Seismo</h1>
     <h2>Enter Date and Time</h2>
-    <input type="datetime-local" id="datetime">
+    <form actions="/" method="post">
+        <input type="datetime-local"  name="datetime">
+    
     <h2>Lunar or Martian Data</h2>
     <label>Choose location of data:</label>
     <br>
@@ -36,7 +24,13 @@
     <br>
     <br>
     <br>
-    <button onclick="submitDateTime()">Submit</button>
+    <button>Submit</button>
     <div id="result"></div>
+</form>
+<br>
+<br>
+<br>
+<img src="../static/seismogram.png" alt="PROCCESED_IMAGE">
+
 </body>
 </html>
