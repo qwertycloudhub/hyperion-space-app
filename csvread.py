@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 #import matplotlib as plt
 import matplotlib.pyplot as plt
-from scipy import signal
 from matplotlib import cm
 
 import obspy as ob

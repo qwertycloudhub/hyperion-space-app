@@ -1,14 +1,28 @@
 #IMPORTS
+# import numpy as np
+# import pandas as pd
+# #import matplotlib as plt
+# import matplotlib.pyplot as plt
+# from scipy import signal
+# from matplotlib import cm
+# import obspy as ob
+# import os
+# from datetime import datetime, timedelta
+# from os.path import join
+
+
+
+
+from os.path import join
+import os
 import numpy as np
 import pandas as pd
 #import matplotlib as plt
 import matplotlib.pyplot as plt
-from scipy import signal
 from matplotlib import cm
-import obspy as ob
-import os
 from datetime import datetime, timedelta
 from os.path import join
+
 data_directory = './data/lunar/training/data/S12_GradeA/'
 
 
@@ -50,11 +64,14 @@ cat = pd.read_csv(cat_file)
 
 
 #For Loop to open files
-#Empty Dictionary for Data
 
+
+#Empty Dictionary for Data
 all_data = {}
 
 for i in range(0, len(cat.index)):
+
+
     row = cat.iloc[i]
     test_filename = row.filename
     data_directory = './data/lunar/training/data/S12_GradeA/'
@@ -69,12 +86,17 @@ for i in range(0, len(cat.index)):
 
     stats = streams[i][0].stats
     sampling_rate = stats["sampling_rate"]
-    tr=streams[i].traces[0].copy()
+    stream = streams[i]
+    tr= stream.traces[0].copy()
+    stats = tr.stats
     tr_filt = tr.copy()
 
     print(f"Sampling rate {sampling_rate}")
     tr_filt.filter('bandpass', freqmin = .9, freqmax = 1, corners=1, zerophase=False)
     tr_filt.filter('lowpass', freq=0.1, corners=0, zerophase=False)
+
+    print(stats["sampling_rate"])
+
     #tr_filt.filter('highpass', freq=0.1, corners=2, zerophase=False)
     #tr_filt.filter('bandstop', freqmin = 0.1, freqmax = 0.2, corners=2, zerophase=False)
 
@@ -92,12 +114,14 @@ for i in range(0, len(cat.index)):
         # Plot trace
     ax.plot(tr_times,tr_data)
         # Mark detection
-    ax.axvline(x = arrival, color='red',label='Rel. Arrival')
-    ax.legend(loc='upper left')
+    ax.axvline(x = arrival, color='red',label='Rel. Arrival')#Colors
+    ax.legend(loc='upper left')#Legend
         # Make the plot pretty
     ax.set_xlim([min(tr_times),max(tr_times)])
-    ax.set_ylabel('Velocity (m/s)')
-    ax.set_xlabel('Time (s)')
+    ax.set_ylabel('Velocity (m/s)')#Labels
+    ax.set_xlabel('Time (s)')#Labels
     ax.set_title(f'{test_filename}', fontweight='bold') #Test_Filename isn't defined
 
     plt.show()
+
+    
