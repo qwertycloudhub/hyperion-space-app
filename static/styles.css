@@ -7,18 +7,41 @@ h2 {
   margin-bottom: 0;
   color: white;
   font-weight: bold;
+  font-family: system-ui, sans-serif;
+font-weight: normal;
 }
 
 label {
   color: white;
+  font-family: system-ui, sans-serif;
+  font-weight: normal;
   font-weight: bold;
 }
 
 h1 {
   color: white;
   font-weight: bold;
+  font-family: system-ui, sans-serif;
+font-weight: normal;
+font-size: 40px;
 }
 
 body {
   background-image: url("https://wallpapers.com/images/hd/beautiful-space-1920-x-1080-background-03r04bdllsmmgghh.jpg");
+}
+
+select {
+  font-family: system-ui, sans-serif;
+font-weight: normal;
+
+}
+
+.dropdown {
+  display: none;
+  margin-top: 10px;
+}
+
+img {
+  display: none;
+  margin-top: 10px;
 }

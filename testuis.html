@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-
-<head style="background-color: #ff6347">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>Planetary Data Selector</title>
+    <style>
+        .dropdown {
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
 </head>
-
 <body>
-    <h1 type="center">Seismo System - By Hyperion</h1>
-    <h1>Select Planetary Data!</h1>
+
+<h1>Select Planetary Data</h1>
 
 <form id="planetForm">
     <label>
-        <input type="radio" name="planet" value="mars" onclick="showDropdowns()"> Mars</input>
+        <input type="radio" name="planet" value="mars" onclick="showDropdowns()"> Mars
     </label>
     <label>
-        <input type="radio" name="planet" value="lunar" onclick="showDropdowns()"> Lunar</input>
+        <input type="radio" name="planet" value="lunar" onclick="showDropdowns()"> Lunar
     </label>
 </form>
 
 <div id="marsDropdown" class="dropdown">
     <label for="marsData">Select Mars Data:</label>
-    <select id="mars">
+    <select id="marsData">
         <option value="default" selected>Default</option>
         <option value="XB.ELYSE.02.BHV.2022-01-02HR04_evid0006.png">2022-01-02
         </option>
@@ -34,7 +37,7 @@
 
 <div id="lunarDropdown" class="dropdown">
     <label for="lunarData">Select Lunar Data:</label>
-    <select id="lunar">
+    <select id="lunarData">
         <option value="default" select>Default</option>
 <option value="xa.s12.00.mhz.1970-01-19HR00_evid00002.png">1970-01-19</option>
 <option value="xa.s12.00.mhz.1970-03-25HR00_evid00003.png">1970-03-25</option>
@@ -115,16 +118,8 @@
     </select>
 </div>
 
-
-
-
-
-    <a href="https://www.pnsn.org/spectrograms/what-is-a-spectrogram#:~:text=In%20the%20seismic%20world%2C%20spectrograms,other%20vibrations%20in%20the%20earth." target="_blank">
-        <img id="img" src="../static/seismogram.png" alt="PROCCESED_IMAGE">
-       </a>
-    
-    <script>
-        function showDropdowns() {
+<script>
+    function showDropdowns() {
         const marsDropdown = document.getElementById('marsDropdown');
         const lunarDropdown = document.getElementById('lunarDropdown');
         const selectedPlanet = document.querySelector('input[name="planet"]:checked');
@@ -142,22 +137,7 @@
             lunarDropdown.style.display = 'none';
         }
     }
-        
-    console.log("hi")
-        const lunarSelect = document.getElementById("lunar");
-        console.log(lunarSelect)
-        const marsSelect = document.getElementById("mars");
-        const image = document.getElementById("img")
-        lunarSelect.addEventListener("change", e => {
-            console.log(e.target.value)
-            image.src = `/static/imgs/lunar/${e.target.value}`
-            image.style.display = "block";
-        });
-        marsSelect.addEventListener("change", e => {
-            image.src = `/static/imgs/mars/${e.target.value}`
-            image.style.display = "block";
-        });
-    </script>
-</body>
+</script>
 
+</body>
 </html>
