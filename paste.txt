@@ -1,2 +1,0 @@
-<option value="XB.ELYSE.02.BHV.2022-01-02HR04_evid0006.png">XB.ELYSE.02.BHV.2022-01-02HR04_evid0006</option>
-<option value="XB.ELYSE.02.BHV.2022-02-03HR08_evid0005.png">XB.ELYSE.02.BHV.2022-02-03HR08_evid0005</option>
