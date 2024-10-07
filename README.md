@@ -11,3 +11,6 @@ This is a simple webapp that we created to browse the archived data provided by 
 ### mseed branch
 This is a branch where we utilize DSP filters such as lowpass and bandpass to filter traces taken from mseed files. Then we apply the classic sta/lta algorithms, adjusting as needed
 until an arrival wave is found.
+
+### models branch
+This is a simple CNN model that we trained to recognize features (arrival detections) within our data, which can also be used with filtered traces in the mseed branch, allowing for more accurate predictions. 
